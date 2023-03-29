@@ -21,7 +21,7 @@ async function lidl_scrapper()
 	let is_sold = regex.test(text);
 	let product_name = process.env.SCRAPPER_PRODUCT_NAME || "Product";
 
-	if(is_sold){
+	if(!is_sold){
 		console.info(`Lidl ${product_name} is available`);
 		let content = ""
 		if(fs.existsSync('scrapper.txt')){
