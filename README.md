@@ -27,6 +27,28 @@ Here is a list of all variables:
 | SCRAPPER_MAIL_TO          | receiver@gmail.com               | The receiver mail address if a product is available                        |
 | SCRAPPER_CRON             | 0 * * * *                        | The cron pattern, a good ressource is https://crontab.guru                 |
 
+### Compose
+
+```yml
+version: '3.9'
+services:
+  lidl_scrapper:
+    container_name: lidl_scrapper
+    image: "developsessions/lidl_scrapper"
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"      
+    environment:
+      - TZ=Europe/Berlin
+      - SCRAPPER_URL=https://www.lidl.de/p/p100332026
+      - SCRAPPER_PRODUCT_NAME=Backautomat
+      - SCRAPPER_SMTP_USER=sender@gmail.com
+      - SCRAPPER_SMTP_PASSWORD=password
+      - SCRAPPER_SMTP_MAIL=sender@gmail.com
+      - SCRAPPER_MAIL_TO=receiver@gmail.com
+      - SCRAPPER_CRON=0 * * * *
+```
+
 ---
 
 <a href="https://www.buymeacoffee.com/developsessions" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg" alt="Buy Me A Coffee" height="41" width="174"></a>

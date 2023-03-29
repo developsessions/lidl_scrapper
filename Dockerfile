@@ -9,6 +9,8 @@ RUN cd app && npm install
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+WORKDIR /root
+
 ENV SCRAPPER_URL="https://www.lidl.de/p/p100332026"
 ENV SCRAPPER_PRODUCT_NAME="Backautomat"
 ENV SCRAPPER_SMTP_USER="sender@gmail.com"
@@ -31,4 +33,4 @@ LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.vendor="WSO2"
 LABEL org.label-schema.version=$BUILD_VERSION
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]

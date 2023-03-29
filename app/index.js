@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer');
-
-const available_products = new Set();
+const fs = require('fs');
 
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
@@ -24,7 +23,12 @@ async function lidl_scrapper()
 
 	if(is_sold){
 		console.info(`Lidl ${product_name} is available`);
-		if(!available_products.has(url)){
+		let content = ""
+		if(fs.existsSync('scrapper.txt')){
+			content = fs.readFileSync('scrapper.txt');
+		}
+
+		if(content != 'available'){
 			let message = `${product_name} ${url} is available again!`;
 			transporter.sendMail({
 				from: `"Lidl Scrapper" <${process.env.SCRAPPER_SMTP_MAIL}>`,
@@ -34,12 +38,12 @@ async function lidl_scrapper()
 				html: message,
 			}).then(info => {
 				console.log('Mail is sent');
-				available_products.add(url);
+				fs.writeFileSync('scrapper.txt', "available");
 			}).catch(console.error);
 		}
 	} else {
 		console.info(`Lidl ${product_name} is sold`);
-		available_products.delete(url);
+		fs.writeFileSync('scrapper.txt', "");
 	}
 }
 
