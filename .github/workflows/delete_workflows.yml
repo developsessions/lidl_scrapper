@@ -1,0 +1,22 @@
+name: Delete-Old-Workflows
+
+on: 
+  repository_dispatch:
+  workflow_dispatch:
+
+# Cronjob
+  schedule:
+    - cron: 0 0 * * 0
+
+jobs:
+  Delete-Old-Workflows:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2.0.3
+        continue-on-error: true
+        with:
+          retain_days: 1
+          keep_minimum_runs: 0

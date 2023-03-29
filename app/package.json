@@ -1,0 +1,29 @@
+{
+  "name": "lidl_scrapper",
+  "version": "1.0.0",
+  "description": "A scrapper which checks if a product is available again in the lidl onlineshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developsessions/lidl_scrapper.git"
+  },
+  "keywords": [
+    "Lidl",
+    "scrapper",
+    "lidl",
+    "onlineshop",
+    "notification"
+  ],
+  "author": "developsessions",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/developsessions/lidl_scrapper/issues"
+  },
+  "homepage": "https://github.com/developsessions/lidl_scrapper#readme",
+  "dependencies": {
+    "nodemailer": "^6.9.1"
+  }
+}
